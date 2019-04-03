@@ -1,0 +1,486 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		07735598A341554B677FEC63 /* libPods-TeslaTrack.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 360F6F176D7898A770A0D054 /* libPods-TeslaTrack.a */; };
+		2C7FD4092252053200CD4E0C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C7FD4082252053200CD4E0C /* AppDelegate.m */; };
+		2C7FD4112252053200CD4E0C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C7FD4102252053200CD4E0C /* Assets.xcassets */; };
+		2C7FD4142252053200CD4E0C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C7FD4122252053200CD4E0C /* LaunchScreen.storyboard */; };
+		2C7FD4172252053200CD4E0C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C7FD4162252053200CD4E0C /* main.m */; };
+		2C7FD41E225205CE00CD4E0C /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 2C7FD41D225205CE00CD4E0C /* Podfile */; };
+		2C7FD4222252094500CD4E0C /* TeslaTrackMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C7FD4212252094500CD4E0C /* TeslaTrackMapViewController.m */; };
+		2C7FD42422520B1800CD4E0C /* position.json in Resources */ = {isa = PBXBuildFile; fileRef = 2C7FD42322520B1800CD4E0C /* position.json */; };
+		2C7FD42C22520BB100CD4E0C /* TeslaTrackModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C7FD42722520BB100CD4E0C /* TeslaTrackModel.m */; };
+		2CCEBE282254BD8400AB8075 /* TeslaTrackMapBoxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CCEBE272254BD8400AB8075 /* TeslaTrackMapBoxViewController.m */; };
+		2CCEBE2D2254BDF500AB8075 /* CustomPolyline.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CCEBE292254BDF500AB8075 /* CustomPolyline.m */; };
+		2CCEBE2E2254BDF500AB8075 /* CustomPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CCEBE2B2254BDF500AB8075 /* CustomPointAnnotation.m */; };
+		2CCEBE312254C06C00AB8075 /* TeslaTrackMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CCEBE302254C06C00AB8075 /* TeslaTrackMainViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		2C7FD4042252053200CD4E0C /* TeslaTrack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TeslaTrack.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C7FD4072252053200CD4E0C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		2C7FD4082252053200CD4E0C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		2C7FD4102252053200CD4E0C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2C7FD4132252053200CD4E0C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		2C7FD4152252053200CD4E0C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2C7FD4162252053200CD4E0C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		2C7FD41D225205CE00CD4E0C /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		2C7FD4202252094500CD4E0C /* TeslaTrackMapViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TeslaTrackMapViewController.h; sourceTree = "<group>"; };
+		2C7FD4212252094500CD4E0C /* TeslaTrackMapViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TeslaTrackMapViewController.m; sourceTree = "<group>"; };
+		2C7FD42322520B1800CD4E0C /* position.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = position.json; sourceTree = "<group>"; };
+		2C7FD42722520BB100CD4E0C /* TeslaTrackModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeslaTrackModel.m; sourceTree = "<group>"; };
+		2C7FD42B22520BB100CD4E0C /* TeslaTrackModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeslaTrackModel.h; sourceTree = "<group>"; };
+		2CCEBE262254BD8400AB8075 /* TeslaTrackMapBoxViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TeslaTrackMapBoxViewController.h; sourceTree = "<group>"; };
+		2CCEBE272254BD8400AB8075 /* TeslaTrackMapBoxViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TeslaTrackMapBoxViewController.m; sourceTree = "<group>"; };
+		2CCEBE292254BDF500AB8075 /* CustomPolyline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomPolyline.m; sourceTree = "<group>"; };
+		2CCEBE2A2254BDF500AB8075 /* CustomPointAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomPointAnnotation.h; sourceTree = "<group>"; };
+		2CCEBE2B2254BDF500AB8075 /* CustomPointAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomPointAnnotation.m; sourceTree = "<group>"; };
+		2CCEBE2C2254BDF500AB8075 /* CustomPolyline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomPolyline.h; sourceTree = "<group>"; };
+		2CCEBE2F2254C06C00AB8075 /* TeslaTrackMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TeslaTrackMainViewController.h; sourceTree = "<group>"; };
+		2CCEBE302254C06C00AB8075 /* TeslaTrackMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TeslaTrackMainViewController.m; sourceTree = "<group>"; };
+		360F6F176D7898A770A0D054 /* libPods-TeslaTrack.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TeslaTrack.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A16660BF5661CE40E8D06D91 /* Pods-TeslaTrack.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeslaTrack.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TeslaTrack/Pods-TeslaTrack.debug.xcconfig"; sourceTree = "<group>"; };
+		B721E692D51AA4B129F7DE3E /* Pods-TeslaTrack.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeslaTrack.release.xcconfig"; path = "Pods/Target Support Files/Pods-TeslaTrack/Pods-TeslaTrack.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2C7FD4012252053200CD4E0C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				07735598A341554B677FEC63 /* libPods-TeslaTrack.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		21C3ED92FBCB663334388ECD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				360F6F176D7898A770A0D054 /* libPods-TeslaTrack.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2C7FD3FB2252053200CD4E0C = {
+			isa = PBXGroup;
+			children = (
+				2C7FD41D225205CE00CD4E0C /* Podfile */,
+				2C7FD4062252053200CD4E0C /* TeslaTrack */,
+				2C7FD4052252053200CD4E0C /* Products */,
+				E653F2416E6A29E420E6E38A /* Pods */,
+				21C3ED92FBCB663334388ECD /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		2C7FD4052252053200CD4E0C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2C7FD4042252053200CD4E0C /* TeslaTrack.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2C7FD4062252053200CD4E0C /* TeslaTrack */ = {
+			isa = PBXGroup;
+			children = (
+				2C7FD42322520B1800CD4E0C /* position.json */,
+				2C7FD41F2252090000CD4E0C /* JXTeslaTrackMapView */,
+				2C7FD4072252053200CD4E0C /* AppDelegate.h */,
+				2C7FD4082252053200CD4E0C /* AppDelegate.m */,
+				2C7FD4102252053200CD4E0C /* Assets.xcassets */,
+				2C7FD4122252053200CD4E0C /* LaunchScreen.storyboard */,
+				2C7FD4152252053200CD4E0C /* Info.plist */,
+				2C7FD4162252053200CD4E0C /* main.m */,
+			);
+			path = TeslaTrack;
+			sourceTree = "<group>";
+		};
+		2C7FD41F2252090000CD4E0C /* JXTeslaTrackMapView */ = {
+			isa = PBXGroup;
+			children = (
+				2CCEBE2F2254C06C00AB8075 /* TeslaTrackMainViewController.h */,
+				2CCEBE302254C06C00AB8075 /* TeslaTrackMainViewController.m */,
+				2C7FD42522520BB100CD4E0C /* Model */,
+				2C7FD4202252094500CD4E0C /* TeslaTrackMapViewController.h */,
+				2C7FD4212252094500CD4E0C /* TeslaTrackMapViewController.m */,
+				2CCEBE262254BD8400AB8075 /* TeslaTrackMapBoxViewController.h */,
+				2CCEBE272254BD8400AB8075 /* TeslaTrackMapBoxViewController.m */,
+			);
+			path = JXTeslaTrackMapView;
+			sourceTree = "<group>";
+		};
+		2C7FD42522520BB100CD4E0C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2CCEBE2A2254BDF500AB8075 /* CustomPointAnnotation.h */,
+				2CCEBE2B2254BDF500AB8075 /* CustomPointAnnotation.m */,
+				2CCEBE2C2254BDF500AB8075 /* CustomPolyline.h */,
+				2CCEBE292254BDF500AB8075 /* CustomPolyline.m */,
+				2C7FD42B22520BB100CD4E0C /* TeslaTrackModel.h */,
+				2C7FD42722520BB100CD4E0C /* TeslaTrackModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E653F2416E6A29E420E6E38A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A16660BF5661CE40E8D06D91 /* Pods-TeslaTrack.debug.xcconfig */,
+				B721E692D51AA4B129F7DE3E /* Pods-TeslaTrack.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2C7FD4032252053200CD4E0C /* TeslaTrack */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2C7FD41A2252053200CD4E0C /* Build configuration list for PBXNativeTarget "TeslaTrack" */;
+			buildPhases = (
+				9C771E2C07066472F0F1E56E /* [CP] Check Pods Manifest.lock */,
+				2C7FD4002252053200CD4E0C /* Sources */,
+				2C7FD4012252053200CD4E0C /* Frameworks */,
+				2C7FD4022252053200CD4E0C /* Resources */,
+				484B4E27B3CA3C4AB75F11D7 /* [CP] Copy Pods Resources */,
+				27C3AED4BFF27A5D5B27073F /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TeslaTrack;
+			productName = TeslaTrack;
+			productReference = 2C7FD4042252053200CD4E0C /* TeslaTrack.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2C7FD3FC2252053200CD4E0C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1010;
+				ORGANIZATIONNAME = Sylar;
+				TargetAttributes = {
+					2C7FD4032252053200CD4E0C = {
+						CreatedOnToolsVersion = 10.1;
+					};
+				};
+			};
+			buildConfigurationList = 2C7FD3FF2252053200CD4E0C /* Build configuration list for PBXProject "TeslaTrack" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2C7FD3FB2252053200CD4E0C;
+			productRefGroup = 2C7FD4052252053200CD4E0C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2C7FD4032252053200CD4E0C /* TeslaTrack */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2C7FD4022252053200CD4E0C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2C7FD4142252053200CD4E0C /* LaunchScreen.storyboard in Resources */,
+				2C7FD4112252053200CD4E0C /* Assets.xcassets in Resources */,
+				2C7FD42422520B1800CD4E0C /* position.json in Resources */,
+				2C7FD41E225205CE00CD4E0C /* Podfile in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		27C3AED4BFF27A5D5B27073F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-TeslaTrack/Pods-TeslaTrack-frameworks.sh",
+				"${PODS_ROOT}/Mapbox-iOS-SDK/dynamic/Mapbox.framework",
+				"${PODS_ROOT}/Mapbox-iOS-SDK/dynamic/Mapbox.framework.dSYM",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapbox.framework",
+				"${DWARF_DSYM_FOLDER_PATH}/Mapbox.framework.dSYM",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TeslaTrack/Pods-TeslaTrack-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		484B4E27B3CA3C4AB75F11D7 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-TeslaTrack/Pods-TeslaTrack-resources.sh",
+				"${PODS_ROOT}/BaiduMapKit/BaiduMapKit/BaiduMapAPI_Map.framework/mapapi.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/mapapi.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TeslaTrack/Pods-TeslaTrack-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9C771E2C07066472F0F1E56E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TeslaTrack-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2C7FD4002252053200CD4E0C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2C7FD4172252053200CD4E0C /* main.m in Sources */,
+				2C7FD4092252053200CD4E0C /* AppDelegate.m in Sources */,
+				2CCEBE2E2254BDF500AB8075 /* CustomPointAnnotation.m in Sources */,
+				2CCEBE312254C06C00AB8075 /* TeslaTrackMainViewController.m in Sources */,
+				2CCEBE282254BD8400AB8075 /* TeslaTrackMapBoxViewController.m in Sources */,
+				2C7FD4222252094500CD4E0C /* TeslaTrackMapViewController.m in Sources */,
+				2CCEBE2D2254BDF500AB8075 /* CustomPolyline.m in Sources */,
+				2C7FD42C22520BB100CD4E0C /* TeslaTrackModel.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		2C7FD4122252053200CD4E0C /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2C7FD4132252053200CD4E0C /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		2C7FD4182252053200CD4E0C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		2C7FD4192252053200CD4E0C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2C7FD41B2252053200CD4E0C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A16660BF5661CE40E8D06D91 /* Pods-TeslaTrack.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NG779RMVC9;
+				INFOPLIST_FILE = TeslaTrack/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = JXPro.TeslaTrack;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2C7FD41C2252053200CD4E0C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B721E692D51AA4B129F7DE3E /* Pods-TeslaTrack.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NG779RMVC9;
+				INFOPLIST_FILE = TeslaTrack/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = JXPro.TeslaTrack;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2C7FD3FF2252053200CD4E0C /* Build configuration list for PBXProject "TeslaTrack" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2C7FD4182252053200CD4E0C /* Debug */,
+				2C7FD4192252053200CD4E0C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2C7FD41A2252053200CD4E0C /* Build configuration list for PBXNativeTarget "TeslaTrack" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2C7FD41B2252053200CD4E0C /* Debug */,
+				2C7FD41C2252053200CD4E0C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2C7FD3FC2252053200CD4E0C /* Project object */;
+}
