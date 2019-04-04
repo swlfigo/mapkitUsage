@@ -10,6 +10,7 @@
 #import <BaiduMapAPI_Base/BMKBaseComponent.h>//引入base相关所有的头文件
 #import <BaiduMapAPI_Map/BMKMapComponent.h>//引入地图功能所有的头文件
 #import "TeslaTrackModel.h"
+#import <BaiduMapAPI_Utils/BMKUtilsComponent.h>
 
 @interface TeslaTrackMapViewController ()<BMKMapViewDelegate>{
     NSTimer *_timer;
@@ -19,9 +20,14 @@
 @property (nonatomic,strong) NSMutableArray<TeslaTrackModel *> *locations;
 @property(nonatomic,assign)CGFloat animationTime;
 @property (nonatomic) NSInteger currentIndex;
-@property (nonatomic,assign)CGFloat zoomLevel;
 @property (nonatomic,assign)BOOL isUseGooSystem;
 @property (nonatomic,strong)UIButton *animateButton;
+
+@property(nonatomic,assign)CGFloat centerLng;
+@property(nonatomic,assign)CGFloat centerLat;
+@property(nonatomic,assign)CGFloat oriZoomLevel;
+@property(nonatomic,strong)BMKMapStatus *mapStatue;
+
 @end
 
 @implementation TeslaTrackMapViewController
@@ -88,11 +94,12 @@
 
     if (self.currentIndex >= self.locations.count) {
         [_timer invalidate];
-        [_mapView removeOverlay:_customPolyline];
-        [_mapView addOverlay:_customPolyline];
-        [_mapView showAnnotations:@[_customPolyline] animated:YES];
-        _mapView.zoomLevel = _zoomLevel;
+//        [_mapView setCenterCoordinate:CLLocationCoordinate2DMake(_centerLat, _centerLng) animated:YES];
+//        _mapView.zoomLevel = _oriZoomLevel;
+//
+//        [_mapView showAnnotations:@[_customPolyline] animated:YES];
         _animateButton.hidden = NO;
+        [_mapView setMapStatus:_mapStatue withAnimation:YES withAnimationTime:3.0f];
     }
     NSArray<TeslaTrackModel*> *currentLocations = [self.locations subarrayWithRange:NSMakeRange(0, _currentIndex)];
     @autoreleasepool {
@@ -178,13 +185,40 @@
         //DrawArray
         CLLocationCoordinate2D *coordinatesPoint = (CLLocationCoordinate2D *)malloc(locationMaxCountArray.count  * sizeof(CLLocationCoordinate2D));
         NSMutableArray *colorArray = [[NSMutableArray alloc]init];
+        
+        //Fix
+        CGFloat maxLng = 0,minLng = 0 ,maxLat = 0,minLat = 0;
+        
         for (int i = 0; i < locationMaxCountArray.count; ++i) {
             TeslaTrackModel *model = locationMaxCountArray[i];
             [_locations addObject:model];
+            if (i == 0) {
+                if (_isUseGooSystem) {
+                    maxLng = model.gooLongitude;
+                    minLng = model.gooLongitude;
+                    maxLat = model.gooLatitude;
+                    minLat = model.gooLatitude;
+                }else{
+                    maxLng = model.baiduLongitude;
+                    minLng = model.baiduLongitude;
+                    maxLat = model.baiduLatitude;
+                    minLat = model.baiduLatitude;
+                }
+            }
             if (_isUseGooSystem) {
                 coordinatesPoint[i] = CLLocationCoordinate2DMake(model.gooLatitude, model.gooLongitude);
+                if (model.gooLongitude > maxLng) maxLng = model.gooLongitude;
+                if (model.gooLongitude < minLng) minLng = model.gooLongitude;
+                if (model.gooLatitude > maxLat) maxLat = model.gooLatitude;
+                if (model.gooLatitude < minLat) minLat = model.gooLatitude;
+                
             }else{
                 coordinatesPoint[i] = CLLocationCoordinate2DMake(model.baiduLatitude, model.baiduLongitude);
+                
+                if (model.baiduLongitude > maxLng) maxLng = model.baiduLongitude;
+                if (model.baiduLongitude < minLng) minLng = model.baiduLongitude;
+                if (model.baiduLatitude > maxLat) maxLat = model.baiduLatitude;
+                if (model.baiduLatitude < minLat) minLat = model.baiduLatitude;
             }
 
             if (model.speed < 30 ) {
@@ -195,9 +229,29 @@
                 [colorArray addObject:@(2)];
             }
         }
+        _centerLng = (maxLng + minLng) / 2.0f;
+        _centerLat = (maxLat + minLat) / 2.0f;
+        NSArray *zoomArray = @[@"50",@"100",@"200",@"500",@"1000",@"2000",@"5000",@"10000",@"20000",@"25000",@"50000",@"100000",@"200000",@"500000",@"1000000",@"2000000"];
+        BMKMapPoint point1 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(maxLat, maxLng));
+        
+        BMKMapPoint point2 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(minLat,minLng));
+        
+        CLLocationDistance distance = BMKMetersBetweenMapPoints(point1,point2);
+        
+        
+        
+        for (int i = 0 ; i < zoomArray.count; ++i) {
+            if ([zoomArray[i] floatValue] - distance > 0) {
+                _oriZoomLevel = 18 - i + 3;
+                break;
+            }
+        }
+        
         
         //configDraw
         _customPolyline = [BMKPolyline polylineWithCoordinates:coordinatesPoint count:locationMaxCountArray.count textureIndex:colorArray];
+        
+        
         
         free(coordinatesPoint);
         
@@ -207,16 +261,25 @@
     }
 }
 
+
+
+
 - (void)mapViewDidFinishLoading:(BMKMapView *)mapView{
-
-}
-
-- (void)mapViewDidFinishRendering:(BMKMapView *)mapView{
+    _mapView.zoomLevel = _oriZoomLevel;
+    
+    [_mapView setCenterCoordinate:CLLocationCoordinate2DMake(_centerLat, _centerLng) animated:YES];
+    
     [_mapView addOverlay:_customPolyline];
     
     [_mapView showAnnotations:@[_customPolyline] animated:YES];
     
-    _zoomLevel = _mapView.zoomLevel;
+    _mapStatue = [_mapView getMapStatus];
+    
+}
+
+- (void)mapViewDidFinishRendering:(BMKMapView *)mapView{
+
+    
 }
 
 - (BMKOverlayView *)mapView:(BMKMapView *)mapView viewForOverlay:(id <BMKOverlay>)overlay{
