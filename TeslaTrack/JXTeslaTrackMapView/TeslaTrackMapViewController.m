@@ -28,6 +28,7 @@
 @property(nonatomic,assign)CGFloat oriZoomLevel;
 @property(nonatomic,strong)BMKMapStatus *mapStatue;
 
+
 @end
 
 @implementation TeslaTrackMapViewController
@@ -99,7 +100,11 @@
 //
 //        [_mapView showAnnotations:@[_customPolyline] animated:YES];
         _animateButton.hidden = NO;
-        [_mapView setMapStatus:_mapStatue withAnimation:YES withAnimationTime:3.0f];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [_mapView setMapStatus:_mapStatue withAnimation:YES withAnimationTime:3.0f];
+
+        });
+
     }
     NSArray<TeslaTrackModel*> *currentLocations = [self.locations subarrayWithRange:NSMakeRange(0, _currentIndex)];
     @autoreleasepool {
@@ -274,6 +279,7 @@
     [_mapView showAnnotations:@[_customPolyline] animated:YES];
     
     _mapStatue = [_mapView getMapStatus];
+    
     
 }
 
