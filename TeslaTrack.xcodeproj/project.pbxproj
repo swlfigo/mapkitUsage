@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		07735598A341554B677FEC63 /* libPods-TeslaTrack.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 360F6F176D7898A770A0D054 /* libPods-TeslaTrack.a */; };
+		2C1983FC22642ADC0032CFC8 /* TeslaTrackRouteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C1983FB22642ADC0032CFC8 /* TeslaTrackRouteViewController.m */; };
+		2C539B8B22696AEA0022BD4F /* TeslaRouteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C539B8A22696AEA0022BD4F /* TeslaRouteModel.m */; };
 		2C7FD4092252053200CD4E0C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C7FD4082252053200CD4E0C /* AppDelegate.m */; };
 		2C7FD4112252053200CD4E0C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C7FD4102252053200CD4E0C /* Assets.xcassets */; };
 		2C7FD4142252053200CD4E0C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C7FD4122252053200CD4E0C /* LaunchScreen.storyboard */; };
@@ -23,6 +25,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2C1983FA22642ADC0032CFC8 /* TeslaTrackRouteViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TeslaTrackRouteViewController.h; sourceTree = "<group>"; };
+		2C1983FB22642ADC0032CFC8 /* TeslaTrackRouteViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TeslaTrackRouteViewController.m; sourceTree = "<group>"; };
+		2C539B8922696AEA0022BD4F /* TeslaRouteModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TeslaRouteModel.h; sourceTree = "<group>"; };
+		2C539B8A22696AEA0022BD4F /* TeslaRouteModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TeslaRouteModel.m; sourceTree = "<group>"; };
 		2C7FD4042252053200CD4E0C /* TeslaTrack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TeslaTrack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C7FD4072252053200CD4E0C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		2C7FD4082252053200CD4E0C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -109,10 +115,12 @@
 				2CCEBE2F2254C06C00AB8075 /* TeslaTrackMainViewController.h */,
 				2CCEBE302254C06C00AB8075 /* TeslaTrackMainViewController.m */,
 				2C7FD42522520BB100CD4E0C /* Model */,
-				2C7FD4202252094500CD4E0C /* TeslaTrackMapViewController.h */,
-				2C7FD4212252094500CD4E0C /* TeslaTrackMapViewController.m */,
 				2CCEBE262254BD8400AB8075 /* TeslaTrackMapBoxViewController.h */,
 				2CCEBE272254BD8400AB8075 /* TeslaTrackMapBoxViewController.m */,
+				2C1983FA22642ADC0032CFC8 /* TeslaTrackRouteViewController.h */,
+				2C1983FB22642ADC0032CFC8 /* TeslaTrackRouteViewController.m */,
+				2C7FD4202252094500CD4E0C /* TeslaTrackMapViewController.h */,
+				2C7FD4212252094500CD4E0C /* TeslaTrackMapViewController.m */,
 			);
 			path = JXTeslaTrackMapView;
 			sourceTree = "<group>";
@@ -126,6 +134,8 @@
 				2CCEBE292254BDF500AB8075 /* CustomPolyline.m */,
 				2C7FD42B22520BB100CD4E0C /* TeslaTrackModel.h */,
 				2C7FD42722520BB100CD4E0C /* TeslaTrackModel.m */,
+				2C539B8922696AEA0022BD4F /* TeslaRouteModel.h */,
+				2C539B8A22696AEA0022BD4F /* TeslaRouteModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -287,8 +297,10 @@
 				2C7FD4172252053200CD4E0C /* main.m in Sources */,
 				2C7FD4092252053200CD4E0C /* AppDelegate.m in Sources */,
 				2CCEBE2E2254BDF500AB8075 /* CustomPointAnnotation.m in Sources */,
+				2C539B8B22696AEA0022BD4F /* TeslaRouteModel.m in Sources */,
 				2CCEBE312254C06C00AB8075 /* TeslaTrackMainViewController.m in Sources */,
 				2CCEBE282254BD8400AB8075 /* TeslaTrackMapBoxViewController.m in Sources */,
+				2C1983FC22642ADC0032CFC8 /* TeslaTrackRouteViewController.m in Sources */,
 				2C7FD4222252094500CD4E0C /* TeslaTrackMapViewController.m in Sources */,
 				2CCEBE2D2254BDF500AB8075 /* CustomPolyline.m in Sources */,
 				2C7FD42C22520BB100CD4E0C /* TeslaTrackModel.m in Sources */,

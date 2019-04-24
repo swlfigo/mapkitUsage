@@ -1,16 +1,16 @@
 //
-//  TeslaTrackMapViewController.h
+//  TeslaRouteModel.h
 //  TeslaTrack
 //
-//  Created by Sylar on 2019/4/1.
+//  Created by Sylar on 2019/4/19.
 //  Copyright © 2019年 Sylar. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
+#import <Foundation/Foundation.h>
+#import <NSObject+YYModel.h>
 NS_ASSUME_NONNULL_BEGIN
 
-@interface TeslaTrackMapViewController : UIViewController
+@interface TeslaRouteModel : NSObject
 
 @property(nonatomic,strong)NSString *routeID;
 

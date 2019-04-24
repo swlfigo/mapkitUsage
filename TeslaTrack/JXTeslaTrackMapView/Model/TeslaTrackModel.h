@@ -22,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic)CLLocation *goolocation;
 @property(nonatomic)CLLocation *baidulocation;
 @property(nonatomic,strong)NSString *shiftState;
+@property(nonatomic,assign)NSInteger timeStamp; //时间
 @end
 
 NS_ASSUME_NONNULL_END

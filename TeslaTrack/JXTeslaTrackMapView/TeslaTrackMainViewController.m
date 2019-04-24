@@ -15,6 +15,12 @@
 
 @implementation TeslaTrackMainViewController
 
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden = NO;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -38,7 +44,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row == 0) {
-        Class class = NSClassFromString(@"TeslaTrackMapViewController");
+        Class class = NSClassFromString(@"TeslaTrackRouteViewController");
         UIViewController *vc = [[class alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
     }else if (indexPath.row == 1){

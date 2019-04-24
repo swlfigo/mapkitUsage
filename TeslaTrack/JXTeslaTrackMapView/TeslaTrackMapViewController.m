@@ -11,6 +11,8 @@
 #import <BaiduMapAPI_Map/BMKMapComponent.h>//引入地图功能所有的头文件
 #import "TeslaTrackModel.h"
 #import <BaiduMapAPI_Utils/BMKUtilsComponent.h>
+#import <AFNetworking/AFNetworking.h>
+#import <MBProgressHUD/MBProgressHUD.h>
 
 @interface TeslaTrackMapViewController ()<BMKMapViewDelegate>{
     NSTimer *_timer;
@@ -18,7 +20,7 @@
 @property(nonatomic,strong)BMKPolyline *customPolyline;
 @property(nonatomic,strong)BMKMapView *mapView;
 @property (nonatomic,strong) NSMutableArray<TeslaTrackModel *> *locations;
-@property(nonatomic,assign)CGFloat animationTime;
+
 @property (nonatomic) NSInteger currentIndex;
 @property (nonatomic,assign)BOOL isUseGooSystem;
 @property (nonatomic,strong)UIButton *animateButton;
@@ -28,7 +30,11 @@
 @property(nonatomic,assign)CGFloat oriZoomLevel;
 @property(nonatomic,strong)BMKMapStatus *mapStatue;
 
+@property (nonatomic, strong) NSURLSessionTask *operation; // 请求操作
 
+@property (nonatomic, assign) CLLocationDistance totalDistance; //总长度
+@property (nonatomic, assign) NSInteger totalTime;
+@property(nonatomic,assign)CGFloat animationTime; //动画每秒时长
 @end
 
 @implementation TeslaTrackMapViewController
@@ -51,9 +57,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _isUseGooSystem = NO;
-    _animationTime = 0.05;
+    _isUseGooSystem = YES;
+    
     _currentIndex = 1;
+    _totalTime = _totalDistance = 0;
+    _animationTime = 0.05;
     //设置为GCJ02坐标
     if (_isUseGooSystem) {
        [BMKMapManager setCoordinateTypeUsedInBaiduMapSDK: BMK_COORDTYPE_COMMON];
@@ -76,7 +84,8 @@
     [self.view addSubview:_animateButton];
     [_animateButton addTarget:self action:@selector(beginAnimate:) forControlEvents:UIControlEventTouchUpInside];
     
-    [self configJSON];
+//    [self configJSON];
+    [self requestData];
 }
 
 
@@ -270,15 +279,15 @@
 
 
 - (void)mapViewDidFinishLoading:(BMKMapView *)mapView{
-    _mapView.zoomLevel = _oriZoomLevel;
-    
-    [_mapView setCenterCoordinate:CLLocationCoordinate2DMake(_centerLat, _centerLng) animated:YES];
-    
-    [_mapView addOverlay:_customPolyline];
-    
-    [_mapView showAnnotations:@[_customPolyline] animated:YES];
-    
-    _mapStatue = [_mapView getMapStatus];
+//    _mapView.zoomLevel = _oriZoomLevel;
+//
+//    [_mapView setCenterCoordinate:CLLocationCoordinate2DMake(_centerLat, _centerLng) animated:YES];
+//
+//    [_mapView addOverlay:_customPolyline];
+//
+//    [_mapView showAnnotations:@[_customPolyline] animated:YES];
+//
+//    _mapStatue = [_mapView getMapStatus];
     
     
 }
@@ -298,4 +307,159 @@
     }
     return nil;
 }
+
+-(void)requestData{
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
+    // 设置请求头
+    [manager.requestSerializer setValue:@"gzip" forHTTPHeaderField:@"Content-Encoding"];
+    // 设置接收的Content-Type
+    manager.responseSerializer.acceptableContentTypes = [[NSSet alloc] initWithObjects:@"application/xml", @"text/xml",@"text/html", @"application/json",@"text/plain",nil];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];//返回格式 JSON
+    //设置返回C的ontent-type
+    manager.responseSerializer.acceptableContentTypes=[[NSSet alloc] initWithObjects:@"application/xml", @"text/xml",@"text/html", @"application/json",@"text/plain",nil];
+    
+
+    NSString *urlString = [NSString stringWithFormat:@"http://47.111.65.165:8088/getUserCarRecordDetail?car_id=67002747908124670&log_id=%@",self.routeID];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.mode = MBProgressHUDModeAnnularDeterminate;
+    hud.label.text = @"Loading";
+    self.operation = [manager GET:urlString parameters:@{} progress:^(NSProgress * _Nonnull downloadProgress) {
+        hud.progressObject = downloadProgress;
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            if (![responseObject isKindOfClass:[NSDictionary class]]) return ;
+            NSDictionary *dataDic = responseObject[@"data"][@"attr"];
+            if (![dataDic isKindOfClass:[NSDictionary class]]) return;
+            NSMutableArray *dataArrayTemp = [[NSMutableArray alloc]init];
+            [dataDic enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+                [dataArrayTemp addObject:obj];
+            }];
+            NSSortDescriptor *classWithSort = [[NSSortDescriptor alloc]initWithKey:@"timestamp" ascending:YES];
+             NSArray *dataArray = [dataArrayTemp sortedArrayUsingDescriptors:@[classWithSort]];       //使用描述器排序
+            
+            NSMutableArray<TeslaTrackModel*> *locationModels = [[NSMutableArray alloc]init];
+            
+            for (int i = 0 ; i < dataArray.count; ++i) {
+                TeslaTrackModel *model = [TeslaTrackModel yy_modelWithJSON:dataArray[i]];
+                [locationModels addObject:model];
+            }
+            
+            //DrawArray
+            CLLocationCoordinate2D *coordinatesPoint = (CLLocationCoordinate2D *)malloc(locationModels.count  * sizeof(CLLocationCoordinate2D));
+            NSMutableArray *colorArray = [[NSMutableArray alloc]initWithCapacity:locationModels.count];
+            
+            //Fix
+            CGFloat maxLng = 0,minLng = 0 ,maxLat = 0,minLat = 0;
+            
+            for (int i = 0; i < locationModels.count; ++i) {
+                TeslaTrackModel *model = locationModels[i];
+                [_locations addObject:model];
+                if (i != locationModels.count - 1) {
+                    BMKMapPoint point1 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(model.gooLatitude, model.gooLongitude));
+                    TeslaTrackModel *modelNext = locationModels[i+1];
+                    BMKMapPoint point2 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(modelNext.gooLatitude,modelNext.gooLongitude));
+                    _totalTime += modelNext.timeStamp - model.timeStamp;
+                    _totalDistance += BMKMetersBetweenMapPoints(point1,point2);
+                }
+                if (i == 0) {
+                    if (_isUseGooSystem) {
+                        maxLng = model.gooLongitude;
+                        minLng = model.gooLongitude;
+                        maxLat = model.gooLatitude;
+                        minLat = model.gooLatitude;
+                    }else{
+                        maxLng = model.baiduLongitude;
+                        minLng = model.baiduLongitude;
+                        maxLat = model.baiduLatitude;
+                        minLat = model.baiduLatitude;
+                    }
+                }
+                if (_isUseGooSystem) {
+                    coordinatesPoint[i] = CLLocationCoordinate2DMake(model.gooLatitude, model.gooLongitude);
+                    if (model.gooLongitude > maxLng) maxLng = model.gooLongitude;
+                    if (model.gooLongitude < minLng) minLng = model.gooLongitude;
+                    if (model.gooLatitude > maxLat) maxLat = model.gooLatitude;
+                    if (model.gooLatitude < minLat) minLat = model.gooLatitude;
+                    
+                }else{
+                    coordinatesPoint[i] = CLLocationCoordinate2DMake(model.baiduLatitude, model.baiduLongitude);
+                    
+                    if (model.baiduLongitude > maxLng) maxLng = model.baiduLongitude;
+                    if (model.baiduLongitude < minLng) minLng = model.baiduLongitude;
+                    if (model.baiduLatitude > maxLat) maxLat = model.baiduLatitude;
+                    if (model.baiduLatitude < minLat) minLat = model.baiduLatitude;
+                }
+                
+                if (model.speed < 30 ) {
+                    [colorArray addObject:@(0)];
+                }else if (model.speed > 30 && model.speed < 70){
+                    [colorArray addObject:@(1)];
+                }else{
+                    [colorArray addObject:@(2)];
+                }
+            }
+            if (_locations.count > 2) {
+                //可计算时间
+                //毫秒
+                NSInteger maxTime = _locations.lastObject.timeStamp;
+                NSInteger minTime = _locations.firstObject.timeStamp;
+                //现实路上每秒走的速度
+                CGFloat avgSpeed = _totalDistance /  ((maxTime - minTime) / 1000);
+                CGFloat time = (1 / avgSpeed) - 0.02;
+                if (time > 1) {
+                    _animationTime = avgSpeed;
+                    
+                }else{
+                   _animationTime = time;
+                }
+                
+                
+            }
+            
+            _centerLng = (maxLng + minLng) / 2.0f;
+            _centerLat = (maxLat + minLat) / 2.0f;
+            NSArray *zoomArray = @[@"50",@"100",@"200",@"500",@"1000",@"2000",@"5000",@"10000",@"20000",@"25000",@"50000",@"100000",@"200000",@"500000",@"1000000",@"2000000"];
+            BMKMapPoint point1 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(maxLat, maxLng));
+            
+            BMKMapPoint point2 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(minLat,minLng));
+            
+            CLLocationDistance distance = BMKMetersBetweenMapPoints(point1,point2);
+            
+            
+            
+            for (int i = 0 ; i < zoomArray.count; ++i) {
+                if ([zoomArray[i] floatValue] - distance > 0) {
+                    _oriZoomLevel = 18 - i + 3;
+                    break;
+                }
+            }
+            
+            
+            //configDraw
+            _customPolyline = [BMKPolyline polylineWithCoordinates:coordinatesPoint count:locationModels.count textureIndex:colorArray];
+            
+            free(coordinatesPoint);
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                _mapView.zoomLevel = _oriZoomLevel;
+            
+                [_mapView setCenterCoordinate:CLLocationCoordinate2DMake(_centerLat, _centerLng) animated:YES];
+            
+                [_mapView addOverlay:_customPolyline];
+            
+                [_mapView showAnnotations:@[_customPolyline] animated:YES];
+            
+                _mapStatue = [_mapView getMapStatus];
+                
+                [hud hideAnimated:YES];
+            });
+            
+        });
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [hud hideAnimated:YES];
+    }];
+}
+
 @end

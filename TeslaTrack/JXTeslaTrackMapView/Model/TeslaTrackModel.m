@@ -11,12 +11,16 @@
 @implementation TeslaTrackModel
 
 + (NSDictionary *)modelCustomPropertyMapper {
-    return @{@"gooLatitude" : @"goo_lat",
-             @"gooLongitude" : @"goo_long",
+    return @{
+//             @"gooLatitude" : @"goo_lat",
+             @"gooLatitude" : @"correctedLatitude",
+             @"gooLongitude" : @"correctedLongitude",
              @"baiduLatitude" : @"bdm_lat",
              @"baiduLongitude":@"bdm_long",
              @"speed":@"speed",
-             @"shiftState":@"shift_state",
+//             @"shiftState":@"shift_state",
+             @"shiftState":@"shiftState",
+             @"timeStamp":@"timestamp",
              };
 }
 
