@@ -24,6 +24,7 @@
 @property (nonatomic) NSInteger currentIndex;
 @property (nonatomic,assign)BOOL isUseGooSystem;
 @property (nonatomic,strong)UIButton *animateButton;
+@property (nonatomic,strong)UIButton *backBtn;
 
 @property(nonatomic,assign)CGFloat centerLng;
 @property(nonatomic,assign)CGFloat centerLat;
@@ -41,7 +42,6 @@
 
 - (void)dealloc
 {
-    
     _mapView.delegate = nil;
 }
 
@@ -79,13 +79,27 @@
     [self.view addSubview:switchBtn];
     [switchBtn addTarget:self action:@selector(switchMapTypeMethod:) forControlEvents:UIControlEventTouchUpInside];
     
-    _animateButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 60, 60)];
-    _animateButton.backgroundColor = [UIColor blueColor];
+    
+    _backBtn = [[UIButton alloc]initWithFrame:CGRectMake(20, 20, 60, 60)];
+    [_backBtn setImage:[UIImage imageNamed:@"JXTeslaTrackBackBtn"] forState:UIControlStateNormal];
+    _backBtn.contentMode = UIViewContentModeScaleAspectFit;
+    [self.view addSubview:_backBtn];
+    [_backBtn addTarget:self action:@selector(backBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    
+    _animateButton = [[UIButton alloc]initWithFrame:CGRectMake(20, 100, 60, 60)];
+    [_animateButton setImage:[UIImage imageNamed:@"JXTeslaTrackAnimatePlayBtn"] forState:UIControlStateNormal];
     [self.view addSubview:_animateButton];
+    _animateButton.contentMode = UIViewContentModeScaleAspectFill;
     [_animateButton addTarget:self action:@selector(beginAnimate:) forControlEvents:UIControlEventTouchUpInside];
     
-//    [self configJSON];
     [self requestData];
+}
+
+#pragma mark - Back
+-(void)backBtnClick:(UIButton*)sender{
+    [_timer invalidate];
+    _mapView.delegate = nil;
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 
@@ -94,7 +108,8 @@
     _currentIndex = 1;
     _animateButton.hidden = YES;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        _mapView.zoomLevel = 15;
+        NSInteger zoomLevel = MAX(15, _oriZoomLevel);
+        _mapView.zoomLevel = zoomLevel;
         _timer = [NSTimer scheduledTimerWithTimeInterval:_animationTime target:self selector:@selector(tick:) userInfo:nil repeats:YES];
     });
     
@@ -104,10 +119,6 @@
 
     if (self.currentIndex >= self.locations.count) {
         [_timer invalidate];
-//        [_mapView setCenterCoordinate:CLLocationCoordinate2DMake(_centerLat, _centerLng) animated:YES];
-//        _mapView.zoomLevel = _oriZoomLevel;
-//
-//        [_mapView showAnnotations:@[_customPolyline] animated:YES];
         _animateButton.hidden = NO;
         dispatch_async(dispatch_get_main_queue(), ^{
             [_mapView setMapStatus:_mapStatue withAnimation:YES withAnimationTime:3.0f];
@@ -152,142 +163,10 @@
     mapType += 1;
 }
 
-#pragma mark Parser JSON
--(void)configJSON{
-    NSError *error = nil;
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"position"
-                                                         ofType:@"json"];
-    NSData *dataFromFile = [NSData dataWithContentsOfFile:filePath];
-    NSDictionary *data = [NSJSONSerialization JSONObjectWithData:dataFromFile
-                                                         options:kNilOptions
-                                                           error:&error];
-    
-    NSMutableArray<TeslaTrackModel*> *locationModels = [[NSMutableArray alloc]init];
-    NSMutableArray<NSArray*> *timesArray = [[NSMutableArray alloc]init];  //每次
-    
-    if (!error && data[@"RECORDS"]) {
-        NSArray *array = data[@"RECORDS"];
-        for (int i = 0 ; i < array.count; ++i) {
-            TeslaTrackModel *model = [TeslaTrackModel yy_modelWithJSON:array[i]];
-            [locationModels addObject:model];
-        }
-        
-        //分离P档
-        NSInteger beginIndex = 0;
-        for (int i = 0; i < locationModels.count; ++i) {
-            if ([locationModels[i].shiftState isEqualToString:@"P"]) {
-                NSArray *perArray = [locationModels subarrayWithRange:NSMakeRange(beginIndex, i - beginIndex)];
-                [timesArray addObject:perArray];
-                beginIndex = i + 1;
-            }
-        }
-        
-        if (!timesArray.count) return;
-        
-        //取最大
-        NSInteger maxCountArrayIndex = 0;
-        for (int i = 0; i < timesArray.count; ++i) {
-            if (timesArray[i].count > timesArray[maxCountArrayIndex].count) {
-                maxCountArrayIndex = i;
-            }
-        }
-        
-        
-        
-        NSArray *locationMaxCountArray = timesArray[maxCountArrayIndex];
-        
-        //DrawArray
-        CLLocationCoordinate2D *coordinatesPoint = (CLLocationCoordinate2D *)malloc(locationMaxCountArray.count  * sizeof(CLLocationCoordinate2D));
-        NSMutableArray *colorArray = [[NSMutableArray alloc]init];
-        
-        //Fix
-        CGFloat maxLng = 0,minLng = 0 ,maxLat = 0,minLat = 0;
-        
-        for (int i = 0; i < locationMaxCountArray.count; ++i) {
-            TeslaTrackModel *model = locationMaxCountArray[i];
-            [_locations addObject:model];
-            if (i == 0) {
-                if (_isUseGooSystem) {
-                    maxLng = model.gooLongitude;
-                    minLng = model.gooLongitude;
-                    maxLat = model.gooLatitude;
-                    minLat = model.gooLatitude;
-                }else{
-                    maxLng = model.baiduLongitude;
-                    minLng = model.baiduLongitude;
-                    maxLat = model.baiduLatitude;
-                    minLat = model.baiduLatitude;
-                }
-            }
-            if (_isUseGooSystem) {
-                coordinatesPoint[i] = CLLocationCoordinate2DMake(model.gooLatitude, model.gooLongitude);
-                if (model.gooLongitude > maxLng) maxLng = model.gooLongitude;
-                if (model.gooLongitude < minLng) minLng = model.gooLongitude;
-                if (model.gooLatitude > maxLat) maxLat = model.gooLatitude;
-                if (model.gooLatitude < minLat) minLat = model.gooLatitude;
-                
-            }else{
-                coordinatesPoint[i] = CLLocationCoordinate2DMake(model.baiduLatitude, model.baiduLongitude);
-                
-                if (model.baiduLongitude > maxLng) maxLng = model.baiduLongitude;
-                if (model.baiduLongitude < minLng) minLng = model.baiduLongitude;
-                if (model.baiduLatitude > maxLat) maxLat = model.baiduLatitude;
-                if (model.baiduLatitude < minLat) minLat = model.baiduLatitude;
-            }
-
-            if (model.speed < 30 ) {
-                [colorArray addObject:@(0)];
-            }else if (model.speed > 30 && model.speed < 70){
-                [colorArray addObject:@(1)];
-            }else{
-                [colorArray addObject:@(2)];
-            }
-        }
-        _centerLng = (maxLng + minLng) / 2.0f;
-        _centerLat = (maxLat + minLat) / 2.0f;
-        NSArray *zoomArray = @[@"50",@"100",@"200",@"500",@"1000",@"2000",@"5000",@"10000",@"20000",@"25000",@"50000",@"100000",@"200000",@"500000",@"1000000",@"2000000"];
-        BMKMapPoint point1 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(maxLat, maxLng));
-        
-        BMKMapPoint point2 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(minLat,minLng));
-        
-        CLLocationDistance distance = BMKMetersBetweenMapPoints(point1,point2);
-        
-        
-        
-        for (int i = 0 ; i < zoomArray.count; ++i) {
-            if ([zoomArray[i] floatValue] - distance > 0) {
-                _oriZoomLevel = 18 - i + 3;
-                break;
-            }
-        }
-        
-        
-        //configDraw
-        _customPolyline = [BMKPolyline polylineWithCoordinates:coordinatesPoint count:locationMaxCountArray.count textureIndex:colorArray];
-        
-        
-        
-        free(coordinatesPoint);
-        
-
-        
-        
-    }
-}
-
 
 
 
 - (void)mapViewDidFinishLoading:(BMKMapView *)mapView{
-//    _mapView.zoomLevel = _oriZoomLevel;
-//
-//    [_mapView setCenterCoordinate:CLLocationCoordinate2DMake(_centerLat, _centerLng) animated:YES];
-//
-//    [_mapView addOverlay:_customPolyline];
-//
-//    [_mapView showAnnotations:@[_customPolyline] animated:YES];
-//
-//    _mapStatue = [_mapView getMapStatus];
     
     
 }

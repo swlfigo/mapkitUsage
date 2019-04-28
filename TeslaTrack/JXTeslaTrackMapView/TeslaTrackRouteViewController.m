@@ -11,7 +11,8 @@
 #import <AFNetworking/AFNetworking.h>
 #import <MBProgressHUD/MBProgressHUD.h>
 #import "TeslaRouteModel.h"
-
+#import "JXTeslaTrackLoginManager.h"
+#import "JXTeslaTrackRouteTableViewCell.h"
 @interface TeslaTrackRouteViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property(nonatomic,strong)UITableView *mainTableView;
@@ -32,7 +33,8 @@
     _souceArray = [[NSMutableArray alloc]init];
     // Do any additional setup after loading the view.
     _mainTableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStylePlain];
-    [_mainTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:NSStringFromClass([UITableViewCell class])];
+    [_mainTableView registerClass:[JXTeslaTrackRouteTableViewCell class] forCellReuseIdentifier:NSStringFromClass([JXTeslaTrackRouteTableViewCell class])];
+    
     [self.view addSubview:_mainTableView];
     _mainTableView.delegate = self;
     _mainTableView.dataSource = self;
@@ -46,6 +48,9 @@
 }
 
 -(void)requestData{
+    
+    if ([JXTeslaTrackLoginManager shareInstance].isLogined == NO || ![JXTeslaTrackLoginManager shareInstance].userTeslaID) return;
+    
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
     // 设置请求头
@@ -57,7 +62,7 @@
     manager.responseSerializer.acceptableContentTypes=[[NSSet alloc] initWithObjects:@"application/xml", @"text/xml",@"text/html", @"application/json",@"text/plain",nil];
     
     
-    NSString *urlString = [NSString stringWithFormat:@"http://47.111.65.165:8088/getUserCarRecordList?car_id=67002747908124670"];
+    NSString *urlString = [NSString stringWithFormat:@"http://47.111.65.165:8088/getUserCarRecordList?car_id=%@",[JXTeslaTrackLoginManager shareInstance].userTeslaID];
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.mode = MBProgressHUDModeAnnularDeterminate;
     hud.label.text = @"Loading";
@@ -92,9 +97,14 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([UITableViewCell class])];
-    cell.textLabel.text = _souceArray[indexPath.row].routeID;
+    JXTeslaTrackRouteTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([JXTeslaTrackRouteTableViewCell class])];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.routeModel = _souceArray[indexPath.row];
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return _souceArray[indexPath.row].cellHeight;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

@@ -1,8 +1,8 @@
 //
-//  TeslaTrackMainViewController.h
+//  JXTeslaTrackLoginViewController.h
 //  TeslaTrack
 //
-//  Created by Sylar on 2019/4/3.
+//  Created by Sylar on 2019/4/25.
 //  Copyright © 2019年 Sylar. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface TeslaTrackMainViewController : UIViewController
+@interface JXTeslaTrackLoginViewController : UIViewController
 
 @end
 

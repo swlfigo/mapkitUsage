@@ -18,7 +18,6 @@
              @"baiduLatitude" : @"bdm_lat",
              @"baiduLongitude":@"bdm_long",
              @"speed":@"speed",
-//             @"shiftState":@"shift_state",
              @"shiftState":@"shiftState",
              @"timeStamp":@"timestamp",
              };

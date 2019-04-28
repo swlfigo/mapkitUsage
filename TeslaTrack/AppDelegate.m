@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import <BaiduMapAPI_Base/BMKBaseComponent.h>
+#import "JXTeslaTrackLoginManager.h"
+
 @interface AppDelegate ()
 
 @end
@@ -28,12 +30,25 @@
     
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor whiteColor];
-    Class mainVCClass = NSClassFromString(@"TeslaTrackMainViewController");
+    Class mainVCClass = NSClassFromString(@"TeslaTrackRouteViewController");
+    Class loginVCClass = NSClassFromString(@"JXTeslaTrackLoginViewController");
+    
+    
+    [JXTeslaTrackLoginManager shareInstance].isLogined = YES;
+    [JXTeslaTrackLoginManager shareInstance].userTeslaID = @"67002747908124670";
+    
+    if ([JXTeslaTrackLoginManager shareInstance].logined == YES) {
+        //已登录
+        UIViewController *mainVC = [[mainVCClass alloc]init];
+        UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:mainVC];
+        self.window.rootViewController = nav;
+    }else{
+        UIViewController *loginVC = [[loginVCClass alloc]init];
+        UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:loginVC];
+        self.window.rootViewController = nav;
+        
+    }
 
-
-    UIViewController *vc = [[mainVCClass alloc]init];
-    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:vc];
-    self.window.rootViewController = nav;
     [self.window makeKeyAndVisible];
     
     return YES;

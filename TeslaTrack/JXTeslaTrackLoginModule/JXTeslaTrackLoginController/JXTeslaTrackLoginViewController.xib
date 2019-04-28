@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="JXTeslaTrackLoginViewController">
+            <connections>
+                <outlet property="loginBtn" destination="nFX-QO-VBT" id="Cfz-X7-GNQ"/>
+                <outlet property="passwordTextField" destination="RGs-cs-sUk" id="1dv-Fx-xae"/>
+                <outlet property="usernameTextField" destination="DxT-NB-0C8" id="S1n-2M-fkf"/>
+                <outlet property="view" destination="iN0-l3-epB" id="WPY-WJ-5cu"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="使用特斯拉账号登陆" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lfW-57-u76">
+                    <rect key="frame" x="109.5" y="89" width="156" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="特斯拉账号" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MHP-2P-bst">
+                    <rect key="frame" x="16" y="173" width="87" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="密码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="37Y-YE-VXG">
+                    <rect key="frame" x="42" y="223" width="35" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入特斯拉账号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DxT-NB-0C8">
+                    <rect key="frame" x="122" y="168" width="237" height="30"/>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RGs-cs-sUk">
+                    <rect key="frame" x="122" y="214" width="237" height="30"/>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nFX-QO-VBT">
+                    <rect key="frame" x="172" y="497" width="31" height="30"/>
+                    <state key="normal" title="登陆"/>
+                    <connections>
+                        <action selector="loginMethod:" destination="-1" eventType="touchUpInside" id="kR3-fl-0y9"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="nFX-QO-VBT" secondAttribute="bottom" constant="140" id="1aY-Fa-5sH"/>
+                <constraint firstItem="nFX-QO-VBT" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="2rP-0E-ys7"/>
+                <constraint firstItem="lfW-57-u76" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" constant="-244" id="9zX-8C-S9G"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="DxT-NB-0C8" secondAttribute="trailing" constant="16" id="BQi-Ln-Y2o"/>
+                <constraint firstItem="37Y-YE-VXG" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="42" id="DX8-T2-6g6"/>
+                <constraint firstItem="MHP-2P-bst" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="HCU-Mh-o9e"/>
+                <constraint firstItem="37Y-YE-VXG" firstAttribute="top" secondItem="MHP-2P-bst" secondAttribute="bottom" constant="29" id="Vax-bF-seg"/>
+                <constraint firstItem="MHP-2P-bst" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="153" id="a32-Ij-khF"/>
+                <constraint firstItem="RGs-cs-sUk" firstAttribute="leading" secondItem="37Y-YE-VXG" secondAttribute="trailing" constant="45" id="bO6-8I-Exx"/>
+                <constraint firstItem="DxT-NB-0C8" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="148" id="i9p-D4-44j"/>
+                <constraint firstItem="RGs-cs-sUk" firstAttribute="top" secondItem="DxT-NB-0C8" secondAttribute="bottom" constant="16" id="jyS-h8-yPQ"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="RGs-cs-sUk" secondAttribute="trailing" constant="16" id="l6D-pc-14R"/>
+                <constraint firstItem="lfW-57-u76" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="ptj-Wy-QHu"/>
+                <constraint firstItem="DxT-NB-0C8" firstAttribute="leading" secondItem="MHP-2P-bst" secondAttribute="trailing" constant="19" id="qTc-k5-JXv"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="39.200000000000003" y="46.326836581709152"/>
+        </view>
+    </objects>
+</document>

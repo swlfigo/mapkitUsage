@@ -16,12 +16,11 @@
 		2C7FD4172252053200CD4E0C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C7FD4162252053200CD4E0C /* main.m */; };
 		2C7FD41E225205CE00CD4E0C /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 2C7FD41D225205CE00CD4E0C /* Podfile */; };
 		2C7FD4222252094500CD4E0C /* TeslaTrackMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C7FD4212252094500CD4E0C /* TeslaTrackMapViewController.m */; };
-		2C7FD42422520B1800CD4E0C /* position.json in Resources */ = {isa = PBXBuildFile; fileRef = 2C7FD42322520B1800CD4E0C /* position.json */; };
 		2C7FD42C22520BB100CD4E0C /* TeslaTrackModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C7FD42722520BB100CD4E0C /* TeslaTrackModel.m */; };
-		2CCEBE282254BD8400AB8075 /* TeslaTrackMapBoxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CCEBE272254BD8400AB8075 /* TeslaTrackMapBoxViewController.m */; };
-		2CCEBE2D2254BDF500AB8075 /* CustomPolyline.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CCEBE292254BDF500AB8075 /* CustomPolyline.m */; };
-		2CCEBE2E2254BDF500AB8075 /* CustomPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CCEBE2B2254BDF500AB8075 /* CustomPointAnnotation.m */; };
-		2CCEBE312254C06C00AB8075 /* TeslaTrackMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CCEBE302254C06C00AB8075 /* TeslaTrackMainViewController.m */; };
+		2C974F422275398A00AB07FF /* JXTeslaTrackLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C974F412275398A00AB07FF /* JXTeslaTrackLoginViewController.xib */; };
+		2C974F4522757EF200AB07FF /* JXTeslaTrackRouteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C974F4422757EF200AB07FF /* JXTeslaTrackRouteTableViewCell.m */; };
+		2CD2411A22714B1600DF3044 /* JXTeslaTrackLoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD2411922714B1600DF3044 /* JXTeslaTrackLoginManager.m */; };
+		2CD2411E2271590700DF3044 /* JXTeslaTrackLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD2411D2271590700DF3044 /* JXTeslaTrackLoginViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,17 +38,15 @@
 		2C7FD41D225205CE00CD4E0C /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		2C7FD4202252094500CD4E0C /* TeslaTrackMapViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TeslaTrackMapViewController.h; sourceTree = "<group>"; };
 		2C7FD4212252094500CD4E0C /* TeslaTrackMapViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TeslaTrackMapViewController.m; sourceTree = "<group>"; };
-		2C7FD42322520B1800CD4E0C /* position.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = position.json; sourceTree = "<group>"; };
 		2C7FD42722520BB100CD4E0C /* TeslaTrackModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeslaTrackModel.m; sourceTree = "<group>"; };
 		2C7FD42B22520BB100CD4E0C /* TeslaTrackModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeslaTrackModel.h; sourceTree = "<group>"; };
-		2CCEBE262254BD8400AB8075 /* TeslaTrackMapBoxViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TeslaTrackMapBoxViewController.h; sourceTree = "<group>"; };
-		2CCEBE272254BD8400AB8075 /* TeslaTrackMapBoxViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TeslaTrackMapBoxViewController.m; sourceTree = "<group>"; };
-		2CCEBE292254BDF500AB8075 /* CustomPolyline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomPolyline.m; sourceTree = "<group>"; };
-		2CCEBE2A2254BDF500AB8075 /* CustomPointAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomPointAnnotation.h; sourceTree = "<group>"; };
-		2CCEBE2B2254BDF500AB8075 /* CustomPointAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomPointAnnotation.m; sourceTree = "<group>"; };
-		2CCEBE2C2254BDF500AB8075 /* CustomPolyline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomPolyline.h; sourceTree = "<group>"; };
-		2CCEBE2F2254C06C00AB8075 /* TeslaTrackMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TeslaTrackMainViewController.h; sourceTree = "<group>"; };
-		2CCEBE302254C06C00AB8075 /* TeslaTrackMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TeslaTrackMainViewController.m; sourceTree = "<group>"; };
+		2C974F412275398A00AB07FF /* JXTeslaTrackLoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JXTeslaTrackLoginViewController.xib; sourceTree = "<group>"; };
+		2C974F4322757EF200AB07FF /* JXTeslaTrackRouteTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JXTeslaTrackRouteTableViewCell.h; sourceTree = "<group>"; };
+		2C974F4422757EF200AB07FF /* JXTeslaTrackRouteTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JXTeslaTrackRouteTableViewCell.m; sourceTree = "<group>"; };
+		2CD2411822714B1600DF3044 /* JXTeslaTrackLoginManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JXTeslaTrackLoginManager.h; sourceTree = "<group>"; wrapsLines = 0; };
+		2CD2411922714B1600DF3044 /* JXTeslaTrackLoginManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JXTeslaTrackLoginManager.m; sourceTree = "<group>"; };
+		2CD2411C2271590700DF3044 /* JXTeslaTrackLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JXTeslaTrackLoginViewController.h; sourceTree = "<group>"; };
+		2CD2411D2271590700DF3044 /* JXTeslaTrackLoginViewController.m */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = JXTeslaTrackLoginViewController.m; sourceTree = "<group>"; tabWidth = 4; };
 		360F6F176D7898A770A0D054 /* libPods-TeslaTrack.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TeslaTrack.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A16660BF5661CE40E8D06D91 /* Pods-TeslaTrack.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeslaTrack.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TeslaTrack/Pods-TeslaTrack.debug.xcconfig"; sourceTree = "<group>"; };
 		B721E692D51AA4B129F7DE3E /* Pods-TeslaTrack.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeslaTrack.release.xcconfig"; path = "Pods/Target Support Files/Pods-TeslaTrack/Pods-TeslaTrack.release.xcconfig"; sourceTree = "<group>"; };
@@ -97,7 +94,7 @@
 		2C7FD4062252053200CD4E0C /* TeslaTrack */ = {
 			isa = PBXGroup;
 			children = (
-				2C7FD42322520B1800CD4E0C /* position.json */,
+				2CD2411622714A6700DF3044 /* JXTeslaTrackLoginModule */,
 				2C7FD41F2252090000CD4E0C /* JXTeslaTrackMapView */,
 				2C7FD4072252053200CD4E0C /* AppDelegate.h */,
 				2C7FD4082252053200CD4E0C /* AppDelegate.m */,
@@ -112,15 +109,13 @@
 		2C7FD41F2252090000CD4E0C /* JXTeslaTrackMapView */ = {
 			isa = PBXGroup;
 			children = (
-				2CCEBE2F2254C06C00AB8075 /* TeslaTrackMainViewController.h */,
-				2CCEBE302254C06C00AB8075 /* TeslaTrackMainViewController.m */,
 				2C7FD42522520BB100CD4E0C /* Model */,
-				2CCEBE262254BD8400AB8075 /* TeslaTrackMapBoxViewController.h */,
-				2CCEBE272254BD8400AB8075 /* TeslaTrackMapBoxViewController.m */,
 				2C1983FA22642ADC0032CFC8 /* TeslaTrackRouteViewController.h */,
 				2C1983FB22642ADC0032CFC8 /* TeslaTrackRouteViewController.m */,
 				2C7FD4202252094500CD4E0C /* TeslaTrackMapViewController.h */,
 				2C7FD4212252094500CD4E0C /* TeslaTrackMapViewController.m */,
+				2C974F4322757EF200AB07FF /* JXTeslaTrackRouteTableViewCell.h */,
+				2C974F4422757EF200AB07FF /* JXTeslaTrackRouteTableViewCell.m */,
 			);
 			path = JXTeslaTrackMapView;
 			sourceTree = "<group>";
@@ -128,16 +123,40 @@
 		2C7FD42522520BB100CD4E0C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				2CCEBE2A2254BDF500AB8075 /* CustomPointAnnotation.h */,
-				2CCEBE2B2254BDF500AB8075 /* CustomPointAnnotation.m */,
-				2CCEBE2C2254BDF500AB8075 /* CustomPolyline.h */,
-				2CCEBE292254BDF500AB8075 /* CustomPolyline.m */,
 				2C7FD42B22520BB100CD4E0C /* TeslaTrackModel.h */,
 				2C7FD42722520BB100CD4E0C /* TeslaTrackModel.m */,
 				2C539B8922696AEA0022BD4F /* TeslaRouteModel.h */,
 				2C539B8A22696AEA0022BD4F /* TeslaRouteModel.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		2CD2411622714A6700DF3044 /* JXTeslaTrackLoginModule */ = {
+			isa = PBXGroup;
+			children = (
+				2CD2411B227158C800DF3044 /* JXTeslaTrackLoginController */,
+				2CD2411722714AF700DF3044 /* JXTeslaTrackLoginManager */,
+			);
+			path = JXTeslaTrackLoginModule;
+			sourceTree = "<group>";
+		};
+		2CD2411722714AF700DF3044 /* JXTeslaTrackLoginManager */ = {
+			isa = PBXGroup;
+			children = (
+				2CD2411822714B1600DF3044 /* JXTeslaTrackLoginManager.h */,
+				2CD2411922714B1600DF3044 /* JXTeslaTrackLoginManager.m */,
+			);
+			path = JXTeslaTrackLoginManager;
+			sourceTree = "<group>";
+		};
+		2CD2411B227158C800DF3044 /* JXTeslaTrackLoginController */ = {
+			isa = PBXGroup;
+			children = (
+				2CD2411C2271590700DF3044 /* JXTeslaTrackLoginViewController.h */,
+				2CD2411D2271590700DF3044 /* JXTeslaTrackLoginViewController.m */,
+				2C974F412275398A00AB07FF /* JXTeslaTrackLoginViewController.xib */,
+			);
+			path = JXTeslaTrackLoginController;
 			sourceTree = "<group>";
 		};
 		E653F2416E6A29E420E6E38A /* Pods */ = {
@@ -161,7 +180,6 @@
 				2C7FD4012252053200CD4E0C /* Frameworks */,
 				2C7FD4022252053200CD4E0C /* Resources */,
 				484B4E27B3CA3C4AB75F11D7 /* [CP] Copy Pods Resources */,
-				27C3AED4BFF27A5D5B27073F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -209,9 +227,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C974F422275398A00AB07FF /* JXTeslaTrackLoginViewController.xib in Resources */,
 				2C7FD4142252053200CD4E0C /* LaunchScreen.storyboard in Resources */,
 				2C7FD4112252053200CD4E0C /* Assets.xcassets in Resources */,
-				2C7FD42422520B1800CD4E0C /* position.json in Resources */,
 				2C7FD41E225205CE00CD4E0C /* Podfile in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -219,30 +237,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		27C3AED4BFF27A5D5B27073F /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-TeslaTrack/Pods-TeslaTrack-frameworks.sh",
-				"${PODS_ROOT}/Mapbox-iOS-SDK/dynamic/Mapbox.framework",
-				"${PODS_ROOT}/Mapbox-iOS-SDK/dynamic/Mapbox.framework.dSYM",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapbox.framework",
-				"${DWARF_DSYM_FOLDER_PATH}/Mapbox.framework.dSYM",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TeslaTrack/Pods-TeslaTrack-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		484B4E27B3CA3C4AB75F11D7 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -295,14 +289,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C7FD4172252053200CD4E0C /* main.m in Sources */,
+				2C974F4522757EF200AB07FF /* JXTeslaTrackRouteTableViewCell.m in Sources */,
+				2CD2411A22714B1600DF3044 /* JXTeslaTrackLoginManager.m in Sources */,
 				2C7FD4092252053200CD4E0C /* AppDelegate.m in Sources */,
-				2CCEBE2E2254BDF500AB8075 /* CustomPointAnnotation.m in Sources */,
 				2C539B8B22696AEA0022BD4F /* TeslaRouteModel.m in Sources */,
-				2CCEBE312254C06C00AB8075 /* TeslaTrackMainViewController.m in Sources */,
-				2CCEBE282254BD8400AB8075 /* TeslaTrackMapBoxViewController.m in Sources */,
 				2C1983FC22642ADC0032CFC8 /* TeslaTrackRouteViewController.m in Sources */,
+				2CD2411E2271590700DF3044 /* JXTeslaTrackLoginViewController.m in Sources */,
 				2C7FD4222252094500CD4E0C /* TeslaTrackMapViewController.m in Sources */,
-				2CCEBE2D2254BDF500AB8075 /* CustomPolyline.m in Sources */,
 				2C7FD42C22520BB100CD4E0C /* TeslaTrackModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -439,7 +432,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = NG779RMVC9;
+				DEVELOPMENT_TEAM = XAWR4AU4TQ;
 				INFOPLIST_FILE = TeslaTrack/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -458,7 +451,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = NG779RMVC9;
+				DEVELOPMENT_TEAM = XAWR4AU4TQ;
 				INFOPLIST_FILE = TeslaTrack/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
