@@ -22,7 +22,7 @@
     
     _coverWidth = [UIScreen mainScreen].bounds.size.width - 12 * 2;
     _coverHeight = ceil(_coverWidth * 3 / 4.0f);
-    _cellHeight = 10 + _coverHeight + 10 + 20 + 5;
+    _cellHeight = 10 + _coverHeight + 10 + 20 + 10 + 20+ 5;
     return YES;
 }
 @end

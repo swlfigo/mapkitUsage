@@ -92,7 +92,10 @@
                 if (routeArray && [routeArray isKindOfClass:[NSArray class]]) {
                     for (int i = 0; i < routeArray.count; ++i) {
                         TeslaRouteModel *model = [TeslaRouteModel yy_modelWithJSON:routeArray[i]];
-                        [_souceArray addObject:model];
+                        if (model) {
+                           [_souceArray addObject:model];
+                        }
+                        
                     }
                     [_mainTableView reloadData];
                 }

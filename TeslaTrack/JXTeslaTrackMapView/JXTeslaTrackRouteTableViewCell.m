@@ -39,13 +39,13 @@
     [_routeMapImageView sd_setImageWithURL:[NSURL URLWithString:_routeModel.routeMapImageURL] placeholderImage:nil];
     _routeMapImageView.frame = CGRectMake(10, 12, _routeModel.coverWidth, _routeModel.coverHeight);
     
-    _statLocationLabel.text = routeModel.starLocationName;
+    _statLocationLabel.text = [NSString stringWithFormat:@"起点 : %@",routeModel.starLocationName];
     [_statLocationLabel sizeToFit];
-    _statLocationLabel.frame = CGRectMake(10, CGRectGetMaxY(_routeMapImageView.frame) + 10, MIN(_statLocationLabel.frame.size.width, [UIScreen mainScreen].bounds.size.width / 2 - 30), 20);
+    _statLocationLabel.frame = CGRectMake(10, CGRectGetMaxY(_routeMapImageView.frame) + 10, [UIScreen mainScreen].bounds.size.width - 20 , 20);
     
-    _endLocationLabel.text = routeModel.endLocationName;
+    _endLocationLabel.text = [NSString stringWithFormat:@"终点 :%@",routeModel.endLocationName?routeModel.endLocationName:@"未知"];
     [_endLocationLabel sizeToFit];
-    _endLocationLabel.frame = CGRectMake(CGRectGetMaxX(_statLocationLabel.frame) + 20, CGRectGetMaxY(_routeMapImageView.frame) + 10, MIN(_endLocationLabel.frame.size.width, [UIScreen mainScreen].bounds.size.width / 2 - 30), 20);
+    _endLocationLabel.frame = CGRectMake(10 , CGRectGetMaxY(_statLocationLabel.frame) + 10, [UIScreen mainScreen].bounds.size.width - 20 , 20);
     
 }
 @end
