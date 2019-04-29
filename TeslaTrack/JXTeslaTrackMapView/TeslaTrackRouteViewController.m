@@ -22,6 +22,10 @@
 
 @implementation TeslaTrackRouteViewController
 
+- (void)dealloc
+{
+    
+}
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -35,6 +39,10 @@
     _mainTableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStylePlain];
     [_mainTableView registerClass:[JXTeslaTrackRouteTableViewCell class] forCellReuseIdentifier:NSStringFromClass([JXTeslaTrackRouteTableViewCell class])];
     
+    UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"退出登录" style:UIBarButtonItemStylePlain target:self action:@selector(exitLogin)];
+    self.navigationItem.rightBarButtonItem = anotherButton;
+
+    
     [self.view addSubview:_mainTableView];
     _mainTableView.delegate = self;
     _mainTableView.dataSource = self;
@@ -45,6 +53,14 @@
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     
+}
+
+-(void)exitLogin{
+    Class loginVCClass = NSClassFromString(@"JXTeslaTrackLoginViewController");
+    UIViewController *loginVC = [[loginVCClass alloc]init];
+    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:loginVC];
+    [UIApplication sharedApplication].keyWindow.rootViewController = nav;
+    [[UIApplication  sharedApplication].keyWindow makeKeyAndVisible];
 }
 
 -(void)requestData{

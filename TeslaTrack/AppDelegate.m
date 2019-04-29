@@ -34,8 +34,8 @@
     Class loginVCClass = NSClassFromString(@"JXTeslaTrackLoginViewController");
     
     
-    [JXTeslaTrackLoginManager shareInstance].isLogined = YES;
-    [JXTeslaTrackLoginManager shareInstance].userTeslaID = @"67002747908124670";
+//    [JXTeslaTrackLoginManager shareInstance].isLogined = YES;
+//    [JXTeslaTrackLoginManager shareInstance].userTeslaID = @"67002747908124670";
     
     if ([JXTeslaTrackLoginManager shareInstance].logined == YES) {
         //已登录

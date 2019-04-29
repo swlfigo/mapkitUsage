@@ -18,6 +18,7 @@
     NSTimer *_timer;
 }
 @property(nonatomic,strong)BMKPolyline *customPolyline;
+@property(nonatomic,strong)BMKPointAnnotation *annotation;
 @property(nonatomic,strong)BMKMapView *mapView;
 @property (nonatomic,strong) NSMutableArray<TeslaTrackModel *> *locations;
 
@@ -74,23 +75,25 @@
     _mapView.delegate = self;
     [self.view addSubview:_mapView];
     _locations = [[NSMutableArray alloc]init];
-    UIButton *switchBtn = [[UIButton alloc]initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width - 60, 0, 60, 60)];
-    switchBtn.backgroundColor = [UIColor cyanColor];
-    [self.view addSubview:switchBtn];
-    [switchBtn addTarget:self action:@selector(switchMapTypeMethod:) forControlEvents:UIControlEventTouchUpInside];
-    
-    
+
     _backBtn = [[UIButton alloc]initWithFrame:CGRectMake(20, 20, 60, 60)];
     [_backBtn setImage:[UIImage imageNamed:@"JXTeslaTrackBackBtn"] forState:UIControlStateNormal];
     _backBtn.contentMode = UIViewContentModeScaleAspectFit;
     [self.view addSubview:_backBtn];
     [_backBtn addTarget:self action:@selector(backBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     
-    _animateButton = [[UIButton alloc]initWithFrame:CGRectMake(20, 100, 60, 60)];
+    
+    UIButton *switchBtn = [[UIButton alloc]initWithFrame:CGRectMake(20, CGRectGetMaxY(_backBtn.frame) + 20 , 60, 60)];
+    [switchBtn setImage:[UIImage imageNamed:@"JXTeslaTrackSwitchBtn"] forState:UIControlStateNormal];
+    [self.view addSubview:switchBtn];
+    [switchBtn addTarget:self action:@selector(switchMapTypeMethod:) forControlEvents:UIControlEventTouchUpInside];
+    
+    _animateButton = [[UIButton alloc]initWithFrame:CGRectMake(20, CGRectGetMaxY(switchBtn.frame) + 20, 60, 60)];
     [_animateButton setImage:[UIImage imageNamed:@"JXTeslaTrackAnimatePlayBtn"] forState:UIControlStateNormal];
     [self.view addSubview:_animateButton];
     _animateButton.contentMode = UIViewContentModeScaleAspectFill;
     [_animateButton addTarget:self action:@selector(beginAnimate:) forControlEvents:UIControlEventTouchUpInside];
+
     
     [self requestData];
 }
@@ -179,9 +182,9 @@
 - (BMKOverlayView *)mapView:(BMKMapView *)mapView viewForOverlay:(id <BMKOverlay>)overlay{
     if ([overlay isKindOfClass:[BMKPolyline class]]){
         BMKPolylineView *polylineView = [[BMKPolylineView alloc] initWithOverlay:overlay];
-        polylineView.strokeColor = [UIColor redColor];
+        polylineView.strokeColor = [UIColor greenColor];
         polylineView.lineWidth = 2.0;
-        polylineView.colors = [NSArray arrayWithObjects:[UIColor redColor], [UIColor yellowColor], [UIColor greenColor], nil];
+        polylineView.colors = [NSArray arrayWithObjects:[UIColor redColor], [UIColor orangeColor], [UIColor greenColor], nil];
         return polylineView;
     }
     return nil;
@@ -270,9 +273,9 @@
                     if (model.baiduLatitude < minLat) minLat = model.baiduLatitude;
                 }
                 
-                if (model.speed < 30 ) {
+                if (model.speed < 20 ) {
                     [colorArray addObject:@(0)];
-                }else if (model.speed > 30 && model.speed < 70){
+                }else if (model.speed > 20 && model.speed < 40){
                     [colorArray addObject:@(1)];
                 }else{
                     [colorArray addObject:@(2)];
@@ -292,7 +295,18 @@
                 }else{
                    _animationTime = time;
                 }
+                if (_annotation) {
+                    [self.mapView removeAnnotation:_annotation];
+                }
                 
+                
+            }else if (_locations.count == 1){
+                if (_annotation) {
+                    [self.mapView removeAnnotation:_annotation];
+                }
+                _annotation = [[BMKPointAnnotation alloc] init];
+                //设置标注的经纬度坐标
+                _annotation.coordinate = CLLocationCoordinate2DMake(_locations[0].gooLatitude, _locations[0].gooLongitude);
                 
             }
             
@@ -325,10 +339,23 @@
                 _mapView.zoomLevel = _oriZoomLevel;
             
                 [_mapView setCenterCoordinate:CLLocationCoordinate2DMake(_centerLat, _centerLng) animated:YES];
-            
-                [_mapView addOverlay:_customPolyline];
-            
-                [_mapView showAnnotations:@[_customPolyline] animated:YES];
+                
+                if (_locations.count > 2) {
+                    [_mapView addOverlay:_customPolyline];
+                    
+                    [_mapView showAnnotations:@[_customPolyline] animated:YES];
+                    
+                    _animateButton.hidden = NO;
+                }else if (_locations.count == 1){
+                    [_mapView addAnnotation:_annotation];
+                    
+                    [_mapView showAnnotations:@[_annotation] animated:YES];
+                    
+                    _animateButton.hidden = YES;
+                }else{
+                    _animateButton.hidden = YES;
+                }
+
             
                 _mapStatue = [_mapView getMapStatus];
                 

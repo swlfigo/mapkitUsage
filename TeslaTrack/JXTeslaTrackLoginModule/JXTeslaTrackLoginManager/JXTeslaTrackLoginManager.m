@@ -17,6 +17,10 @@ static JXTeslaTrackLoginManager* _instance = nil;
     static dispatch_once_t onceToken ;
     dispatch_once(&onceToken, ^{
         _instance = [[super allocWithZone:NULL] init] ;
+        NSUserDefaults *defalut = [NSUserDefaults standardUserDefaults];
+        [defalut registerDefaults:@{@"logined":@(NO),@"userID":@""}];
+        _instance.isLogined = [defalut boolForKey:@"logined"];
+        _instance.userTeslaID = [defalut valueForKey:@"userID"];
     }) ;
     
     return _instance ;

@@ -63,11 +63,23 @@
                 if (dic[@"status"] && [dic[@"status"]integerValue] == 200) {
                     NSArray *dataArray = dic[@"data"];
                     if ([dataArray isKindOfClass:[NSArray class]] &&  dataArray.count) {
+                        NSUserDefaults *defalut = [NSUserDefaults standardUserDefaults];
+                        [defalut setBool:YES forKey:@"logined"];
+                        [defalut setValue:[NSString stringWithFormat:@"%@",dataArray[0]] forKey:@"userID"];
                         [JXTeslaTrackLoginManager shareInstance].isLogined = YES;
                         [JXTeslaTrackLoginManager shareInstance].userTeslaID = [NSString stringWithFormat:@"%@",dataArray[0]];
                         [self successLogin];
                         return ;
                     }
+                }else if (dic[@"status"] && [dic[@"status"]integerValue] == 404){
+                    //先s写死测试
+                    NSUserDefaults *defalut = [NSUserDefaults standardUserDefaults];
+                    [defalut setBool:YES forKey:@"logined"];
+                    [defalut setValue:@"67002747908124670" forKey:@"userID"];
+                    [JXTeslaTrackLoginManager shareInstance].isLogined = YES;
+                    [JXTeslaTrackLoginManager shareInstance].userTeslaID = @"67002747908124670";
+                    [self successLogin];
+                    return ;
                 }
                 
             }
@@ -84,6 +96,7 @@
 
 -(void)failLogin{
     [MBProgressHUD hideHUDForView:self.view animated:YES];
+    
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.mode = MBProgressHUDModeText;
     hud.label.text = @"登陆失败";
